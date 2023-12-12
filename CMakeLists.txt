@@ -4,6 +4,7 @@ project (rt2d)
 
 # delete CMakeCache.txt from the build directory when you edit these options
 ####################################################################
+OPTION(MAKE_BATTLE "Make Battle application" ON)
 OPTION(MAKE_START "Make RT2D start application" ON)
 OPTION(MAKE_DEMO "Make RT2D demo (tests) application" ON)
 OPTION(MAKE_CANVAS_DEMO "Make RT2D Canvas demo (tests) application" ON)
@@ -165,6 +166,28 @@ IF(MAKE_START)
 	# Copy assets to the build directory
 	file(
 		COPY start/assets
+		DESTINATION ${CMAKE_BINARY_DIR}
+	)
+ENDIF()
+
+####################################################################
+# battle                                                           #
+####################################################################
+IF(MAKE_BATTLE)
+	add_executable(battleofwoodfort
+		battleofwoodfort/main.cpp
+		battleofwoodfort/gamescene.cpp
+		battleofwoodfort/gamescene.h
+		battleofwoodfort/backgroundentity.cpp
+		battleofwoodfort/backgroundentity.h
+		
+	)
+	target_link_libraries(battleofwoodfort
+		${ALL_GRAPHICS_LIBS}
+	)
+	# Copy assets to the build directory
+	file(
+		COPY battleofwoodfort/assets
 		DESTINATION ${CMAKE_BINARY_DIR}
 	)
 ENDIF()
