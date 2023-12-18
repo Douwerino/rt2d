@@ -180,6 +180,8 @@ IF(MAKE_BATTLE)
 		battleofwoodfort/gamescene.h
 		battleofwoodfort/backgroundentity.cpp
 		battleofwoodfort/backgroundentity.h
+		battleofwoodfort/playerentity.cpp
+		battleofwoodfort/playerentity.h
 		
 	)
 	target_link_libraries(battleofwoodfort

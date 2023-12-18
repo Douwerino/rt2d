@@ -7,6 +7,7 @@
 #include "scene.h"
 
 #include "backgroundentity.h"
+#include "playerentity.h"
 
 class gamescene : public Scene 
 {
@@ -17,6 +18,9 @@ class gamescene : public Scene
 
     private:
     backgroundentity* BackGroundEntity;
+    playerentity* PlayerEntity;
+        int lives = 5;
+        
     Timer t;
 };
 

@@ -1,6 +1,6 @@
-
 #include "bowf.h"
 #include "color.h"
+#include <time.h>
 
 Bowf::Bowf()
 {
@@ -15,6 +15,10 @@ Bowf::~Bowf()
 }
 
 void Bowf::update(float deltaTime)
+
+
+void Bowf::updatePlayer()
 {
-    
+	
+
 }
