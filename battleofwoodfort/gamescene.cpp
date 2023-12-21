@@ -38,7 +38,7 @@ gamescene::~gamescene()
 
 void gamescene::update (float deltaTime)
 {
-    if (input()->getKeyDown(KeyCode::Space))
+    if (input()->getKeyUp(KeyCode::Space))
     {
         // if (shoottimer.seconds() > 0.8f) {
         //     PixelSprite b = player_arrow; // copy sprites etc
@@ -52,10 +52,10 @@ void gamescene::update (float deltaTime)
     }
 
     if (input()->getKey(KeyCode::Left)) {
-		PlayerEntity->position.x -= 30*deltaTime;
+		PlayerEntity->position.x -= 250*deltaTime;
 	}
 	if (input()->getKey(KeyCode::Right)) {
-		PlayerEntity->position.x += 30 * deltaTime;
+		PlayerEntity->position.x += 250*deltaTime;
 	}
     //Add deltaTime
 
