@@ -1,17 +1,19 @@
-#ifndef BACKGROUNDENTITY_H
-#define BACKGROUNDENTITY_H
+#ifndef ARROWENTITY_H
+#define ARROWENTITY_H
 
 #include <rt2d/entity.h>
 
-class BackGroundEntity : public Entity
+class ArrowEntity : public Entity
 {
     public:
     //constructor
-    BackGroundEntity();
+    ArrowEntity();
     //destructor
-    virtual ~BackGroundEntity();
+    virtual ~ArrowEntity();
 
     void update(float deltaTime) override;
+
+    bool alive;
 
     private:
     //add your private declarations

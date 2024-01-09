@@ -1,17 +1,17 @@
 #include "playerentity.h"
 
-playerentity::playerentity() : Entity()
+PlayerEntity::PlayerEntity() /*: Entity()*/
 {
     this->addSprite("assets/Player.tga");
 
 }
 
-playerentity::~playerentity()
+PlayerEntity::~PlayerEntity()
 {
 
 }
 
-void playerentity::update(float deltaTime)
+void PlayerEntity::update(float deltaTime)
 {
-
+    
 }

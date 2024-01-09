@@ -8,6 +8,7 @@
 
 #include "backgroundentity.h"
 #include "playerentity.h"
+#include "arrowentity.h"
 
 class gamescene : public Scene 
 {
@@ -17,10 +18,11 @@ class gamescene : public Scene
     virtual void update(float delataTime);
 
     private:
-    backgroundentity* BackGroundEntity;
-    playerentity* PlayerEntity;
-        int lives = 5;
-        
+    BackGroundEntity* backgroundentity;
+    PlayerEntity* playerentity;
+    int lives = 5;
+    std::vector<ArrowEntity*> quiver;
+
     Timer t;
 };
 

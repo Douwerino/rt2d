@@ -3,15 +3,15 @@
 
 #include <rt2d/entity.h>
 
-class playerentity : public Entity
+class PlayerEntity : public Entity
 {
     public:
     //constructor
-    playerentity();
+    PlayerEntity();
     //destructor
-    virtual ~playerentity();
+    virtual ~PlayerEntity();
 
-    virtual void update(float deltaTime);
+    void update(float deltaTime) override;
 
     private:
     //add your private declarations

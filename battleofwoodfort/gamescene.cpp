@@ -3,37 +3,35 @@
 
 #include "gamescene.h"
 
-
-
-
-
 gamescene::gamescene() : Scene()
 {
     t.start();
     //timer
 
-    BackGroundEntity = new backgroundentity();
-    BackGroundEntity->position = Point2(SWIDTH / 2, SHEIGHT / 2);
+    backgroundentity = new BackGroundEntity();
+    backgroundentity->scale = Point2(3, 1.5);
+    backgroundentity->position = Point2(SWIDTH / 2, SHEIGHT / 2);
     //BackGroundEntity->scale == Point(SWIDTH / 512, SHEIGHT / 512);
 
-    this->addChild(BackGroundEntity);
+    this->addChild(backgroundentity);
     
-    PlayerEntity = new playerentity();
-    PlayerEntity->position = Point2(SWIDTH / 2, SHEIGHT / 1.24);
+    playerentity = new PlayerEntity();
+    playerentity->position = Point2(SWIDTH / 2, SHEIGHT / 1.06);
     //PlayerEntity->scale == Point(SWIDTH / 512, SHEIGHT / 512);
 
-    this->addChild(PlayerEntity);
+    this->addChild(playerentity);
+
 }
 
 gamescene::~gamescene()
 {
-    this->removeChild(BackGroundEntity);
+    this->removeChild(backgroundentity);
 
-    delete BackGroundEntity;
+    delete backgroundentity;
 
-    this->removeChild(PlayerEntity);
+    this->removeChild(playerentity);
 
-    delete PlayerEntity;
+    delete playerentity;
 }
 
 void gamescene::update (float deltaTime)
@@ -47,16 +45,36 @@ void gamescene::update (float deltaTime)
         //     shoottimer.start();
         // }
 
-
+        
 
     }
 
     if (input()->getKey(KeyCode::Left)) {
-		PlayerEntity->position.x -= 250*deltaTime;
+		playerentity->position.x -= 250*deltaTime;
 	}
 	if (input()->getKey(KeyCode::Right)) {
-		PlayerEntity->position.x += 250*deltaTime;
+        playerentity->position.x += 250*deltaTime;
 	}
-    //Add deltaTime
 
+    if (playerentity->position.x > SWIDTH-1) {
+        playerentity->position.x = SWIDTH -1;
+    }
+    if (playerentity->position.x < 1) {
+        playerentity->position.x = 1;
+    }
+    
+    if (input()->getKeyUp(KeyCode::Space)) 
+    {
+        ArrowEntity* arrowentity = new ArrowEntity();
+        this->addChild(arrowentity);
+        quiver.push_back(arrowentity);
+        quiver[quiver.size() -1]->position = playerentity->position;
+    }
+
+    int i = 0; 
+    while (i < quiver.size()) {
+        quiver[i]->position.y--;
+        
+        i++;
+    }
 }

@@ -1,17 +1,17 @@
 #include "backgroundentity.h"
 
-backgroundentity::backgroundentity() : Entity()
+BackGroundEntity::BackGroundEntity()
 {
     this->addSprite("assets/Background.tga");
 
 }
 
-backgroundentity::~backgroundentity()
+BackGroundEntity::~BackGroundEntity()
 {
 
 }
 
-void backgroundentity::update(float deltaTime)
+void BackGroundEntity::update(float deltaTime)
 {
 
 }
