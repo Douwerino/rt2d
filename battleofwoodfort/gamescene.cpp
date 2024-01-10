@@ -38,14 +38,12 @@ void gamescene::update (float deltaTime)
 {
     if (input()->getKeyUp(KeyCode::Space))
     {
-        // if (shoottimer.seconds() > 0.8f) {
+        //  if (shoottimer.seconds() > 0.8f) {
         //     PixelSprite b = player_arrow; // copy sprites etc
         //     b.position = player.position + Pointi(0, 2);
         //     player_arrow.push_back(b);
         //     shoottimer.start();
         // }
-
-        
 
     }
 
@@ -73,7 +71,7 @@ void gamescene::update (float deltaTime)
 
     int i = 0; 
     while (i < quiver.size()) {
-        quiver[i]->position.y--;
+        quiver[i]->position.y -= 500 * deltaTime;
         
         i++;
     }
