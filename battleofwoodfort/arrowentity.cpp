@@ -3,8 +3,11 @@
 ArrowEntity::ArrowEntity()
 {
     this->addSprite("assets/Player.tga");
-    //this->addSprite("assets/Arrow.tga");
+    
+    this->sprite()->color = BLACK;
+
     this->alive = true;
+
 }
 
 

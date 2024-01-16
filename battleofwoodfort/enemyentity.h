@@ -1,15 +1,15 @@
-#ifndef PILARENTITY_H
-#define PILARENTITY_H
+#ifndef ENEMYENTITY_H
+#define ENEMYENTITY_H
 
 #include <rt2d/entity.h>
 
-class PilarEntity : public Entity
+class EnemyEntity : public Entity
 {
     public:
     //constructor
-    PilarEntity();
+       EnemyEntity();
     //destructor
-    virtual ~PilarEntity();
+    virtual ~EnemyEntity();
 
     void update(float deltaTime) override;
 

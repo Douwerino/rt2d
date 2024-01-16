@@ -1,6 +1,6 @@
 #include "backgroundentity.h"
 
-BackGroundEntity::BackGroundEntity()
+BackGroundEntity::BackGroundEntity() : Entity()
 {
     this->addSprite("assets/Background.tga");
 

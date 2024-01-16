@@ -1,6 +1,6 @@
 #include "playerentity.h"
 
-PlayerEntity::PlayerEntity() /*: Entity()*/
+PlayerEntity::PlayerEntity() : Entity()
 {
     this->addSprite("assets/Player.tga");
 

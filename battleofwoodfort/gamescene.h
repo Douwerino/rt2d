@@ -9,6 +9,8 @@
 #include "backgroundentity.h"
 #include "playerentity.h"
 #include "arrowentity.h"
+#include "enemyentity.h"
+
 
 class gamescene : public Scene 
 {
@@ -20,7 +22,8 @@ class gamescene : public Scene
     private:
     BackGroundEntity* backgroundentity;
     PlayerEntity* playerentity;
-    int lives = 5;
+    int lives = 3;
+    EnemyEntity* enemyentity;
     std::vector<ArrowEntity*> quiver;
 
     Timer t;
