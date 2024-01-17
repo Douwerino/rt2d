@@ -4,8 +4,8 @@
 #include "gamescene.h"
 
 gamescene::gamescene() : Scene()
-{
-    t.start();
+{ 
+    shootTimer.start();
     //timer
 
     backgroundentity = new BackGroundEntity();
@@ -39,20 +39,10 @@ gamescene::~gamescene()
     this->removeChild(enemyentity);
 
     delete enemyentity;
+
 }
 
 void gamescene::update (float deltaTime){
-
-    //if (input()->getKeyUp(KeyCode::Space))
-    //{
-    //    if (shoottimer.seconds() > 0.8f) {
-    //    PixelSprite b = player_arrow; //copy sprites etc
-    //    b.position = player.position + Pointi(0, 2);
-    //    player_arrow.push_back(b);
-    //    shoottimer.start();
-    //    }
-    //}
-
 
     if (input()->getKey(KeyCode::Left)) {
 		playerentity->position.x -= 250*deltaTime;
@@ -69,11 +59,17 @@ void gamescene::update (float deltaTime){
     }
     
     if (input()->getKeyUp(KeyCode::Space)) {
-        ArrowEntity* arrowentity = new ArrowEntity();
-        arrowentity->scale = Point2(0.5, 1);
-        this->addChild(arrowentity);
-        quiver.push_back(arrowentity);
-        quiver[quiver.size() -1]->position = playerentity->position;
+        if (shootTimer.seconds() >= arrowCooldown) {
+            ArrowEntity* arrowentity = new ArrowEntity();
+            arrowentity->scale = Point2(0.5, 1);
+            this->addChild(arrowentity);
+            quiver.push_back(arrowentity);
+            quiver[quiver.size() - 1]->position = playerentity->position;
+
+            shootTimer.start();
+        }
+    
+    
     }
 
     int i = 0; 
