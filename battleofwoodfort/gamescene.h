@@ -30,6 +30,9 @@ class gamescene : public Scene
 
     float arrowCooldown = 1.0f; //2 second cooldown
     Timer shootTimer;
+    bool checkArrowEnemyCollision(ArrowEntity* arrow, EnemyEntity* enemy);
+
+
 };
 
 #endif

@@ -3,8 +3,8 @@
 
 #include "gamescene.h"
 
-gamescene::gamescene() : Scene()
-{ 
+gamescene::gamescene() : Scene(){ 
+    
     shootTimer.start();
     //timer
 
@@ -26,8 +26,8 @@ gamescene::gamescene() : Scene()
 
 }
 
-gamescene::~gamescene()
-{
+gamescene::~gamescene(){
+    
     this->removeChild(backgroundentity);
 
     delete backgroundentity;
@@ -69,15 +69,40 @@ void gamescene::update (float deltaTime){
             shootTimer.start();
         }
     
-    
     }
 
     int i = 0; 
     while (i < quiver.size()) {
         quiver[i]->position.y -= 500 * deltaTime;
            
-         // Check if the arrow has reached the top of the screen
-        if (quiver[i]->position.y < -25) {
+        if (checkArrowEnemyCollision(quiver[i], enemyentity)) {
+            // Handle enemy hit logic here (e.g., reduce health, play hit animation, etc.)
+
+            // Remove the arrow from the scene
+            this->removeChild(quiver[i]);
+
+            // Delete the arrow entity to free the memory
+            delete quiver[i];
+
+            // Remove the arrow from the quiver vector
+            quiver.erase(quiver.begin() + i);
+
+            // Handle enemy death logic here (e.g., play death animation, respawn, etc.)
+            // For simplicity, I'm just removing the enemy from the scene and deleting it
+            this->removeChild(enemyentity);
+            delete enemyentity;
+
+            // Create a new enemy entity (respawn)
+            enemyentity = new EnemyEntity();
+            enemyentity->position = Point2(SWIDTH / 2, SHEIGHT / 5);
+            this->addChild(enemyentity);
+
+            // Break out of the loop, as we've handled the collision
+            break;
+
+        }
+            // Check if the arrow has reached the top of the screen
+        else if (quiver[i]->position.y < -25) {
                 // Remove the arrow from the scene
                 this->removeChild(quiver[i]);
 
@@ -86,9 +111,9 @@ void gamescene::update (float deltaTime){
 
                 // Remove the arrow from the quiver vector
                 quiver.erase(quiver.begin() + i);
-        }//if
+        }
         else {
             i++;
-        }//else
-    }// while
-}// update
+        }
+    }
+}
