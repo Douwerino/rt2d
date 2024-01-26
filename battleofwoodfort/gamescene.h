@@ -19,19 +19,23 @@ class gamescene : public Scene
     public: 
     gamescene();
     virtual ~gamescene();
-    virtual void update(float delataTime);
+    virtual void update(float deltaTime);
 
     private:
     BackGroundEntity* backgroundentity;
     PlayerEntity* playerentity;
     int lives = 3;
     EnemyEntity* enemyentity;
-    std::vector<ArrowEntity*> quiver;
+    float enemyRespawnCooldown = 1.0f;
+    Timer respawnTimer;
 
-    float arrowCooldown = 1.0f; //2 second cooldown
+    std::vector<ArrowEntity*> quiver;
+    float arrowCooldown = 1.0f;
     Timer shootTimer;
     bool checkArrowEnemyCollision(ArrowEntity* arrow, EnemyEntity* enemy);
 
+
+    Timer t200;
 
 };
 
