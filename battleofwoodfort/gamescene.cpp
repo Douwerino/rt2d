@@ -3,13 +3,13 @@
 
 #include "gamescene.h"
 
-gamescene::gamescene() : Scene() {
+GameScene::GameScene() : Scene() {
     
+    //Timers
     shootTimer.start();
-    respawnTimer.start();
-    respawnTimer.pause();
-    //timers
+    //respawnTimer.start();
 
+    //Greating entities
     backgroundentity = new BackGroundEntity();
     backgroundentity->scale = Point2(3, 1.5);
     backgroundentity->position = Point2(SWIDTH / 2, SHEIGHT / 2);
@@ -28,7 +28,7 @@ gamescene::gamescene() : Scene() {
 
 }
 
-gamescene::~gamescene(){
+GameScene::~GameScene(){
     
     this->removeChild(backgroundentity);
 
@@ -44,10 +44,10 @@ gamescene::~gamescene(){
 
 }
 
-bool gamescene::checkArrowEnemyCollision(ArrowEntity* arrow, EnemyEntity* enemy) {
+bool GameScene::checkArrowEnemyCollision(ArrowEntity* arrow, EnemyEntity* enemy) {
     // Assuming a simple circular collision check based on positions
-    float arrowRadius = 5.0;//0.25;     // Adjust the arrow radius based on your entity size
-    float enemyRadius = 5.0;      // Adjust the enemy radius based on your entity size
+    float arrowRadius = 5.0;//0.25;
+    float enemyRadius = 5.0;//1;
 
     // Calculate the distance between the centers of the arrow and the enemy
     float distance = std::sqrt(std::pow(arrow->position.x - enemy->position.x, 2) +
@@ -57,7 +57,7 @@ bool gamescene::checkArrowEnemyCollision(ArrowEntity* arrow, EnemyEntity* enemy)
     return distance < (arrowRadius + enemyRadius);
 }
 
-void gamescene::update(float deltaTime) {
+void GameScene::update(float deltaTime) {
 
     if (input()->getKey(KeyCode::Left)) {
 		playerentity->position.x -= 250*deltaTime;
@@ -102,17 +102,11 @@ void gamescene::update(float deltaTime) {
             this->removeChild(enemyentity);
             delete enemyentity;
 
-            // Create a new enemy entity
-            enemyentity = new EnemyEntity();
-            enemyentity->position = Point2(SWIDTH / 2, SHEIGHT / 5);
-            this->addChild(enemyentity);
-
             //enemy respawn timer
-            //respawnTimer.start(enemyRespawnCooldown);//enemyRespawnCooldown
+            respawnTimer.start(/*enemyRespawnCooldown*/);
 
             // Break out of the loop, as we've handled the collision
             break;
-
         }
         // Check if the arrow has reached the top of the screen
         else if (quiver[i]->position.y < -25) {
@@ -130,28 +124,22 @@ void gamescene::update(float deltaTime) {
         }
     }
     // Check if the respawn timer is active
-    if (respawnTimer.paused()) {
-        // Check if the respawn timer has elapsed
-        if (respawnTimer.seconds() >= enemyRespawnCooldown) {
-            // Finish respawning
-            respawnTimer.stop();
+    
+    // Check if the respawn timer has elapsed
+    if (respawnTimer.seconds() >= enemyRespawnCooldown) {
+        // Finish respawning
+        respawnTimer.stop();
 
-            // Create a new enemy entity
-            enemyentity = new EnemyEntity();
-            enemyentity->position = Point2(SWIDTH / 2, SHEIGHT / 5);
-            this->addChild(enemyentity);
-        }
-        else {
-            // Enemy is still respawning, update timer and skip  the rest of the update logic
-            respawnTimer.unpause();
-            respawnTimer.seconds();
-            respawnTimer.pause(); //d(respawnTimer.seconds() + deltaTime >= enemyRespawnCooldown);
-            return;
-        }
+        // Create a new enemy entity
+        enemyentity = new EnemyEntity();
+        enemyentity->position = Vector2(SWIDTH / 2, SHEIGHT / 5);
+        this->addChild(enemyentity);
     }
-
-
-    //t200.start();
+    else {
+        respawnTimer.unpause();
+        return;
+    }
+    
 
 
 }

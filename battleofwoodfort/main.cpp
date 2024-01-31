@@ -9,7 +9,7 @@ int main(void)
 {
     Core core;
 
-    Scene* Gamescene = new gamescene();
+    Scene* Gamescene = new GameScene();
     while (Gamescene->isRunning()) 
     {
         core.run(Gamescene);
