@@ -46,12 +46,15 @@ GameScene::~GameScene(){
 
 bool GameScene::checkArrowEnemyCollision(ArrowEntity* arrow, EnemyEntity* enemy) {
     // Assuming a simple circular collision check based on positions
-    float arrowRadius = 5.0;//0.25;
-    float enemyRadius = 5.0;//1;
-
+    float arrowRadius = 16.0 * 16.0;
+    float enemyRadius = 32.0 * 32.0;
+    
     // Calculate the distance between the centers of the arrow and the enemy
-    float distance = std::sqrt(std::pow(arrow->position.x - enemy->position.x, 2) +
-        std::pow(arrow->position.y - enemy->position.y, 2));
+    /*float distance = std::sqrt(std::pow(arrow->position.x - enemy->position.x, 2) +
+        std::pow(arrow->position.y - enemy->position.y, 2));*/
+ 
+    float distance = std::pow(arrow->position.x - enemy->position.x, 2) +
+        std::pow(arrow->position.y - enemy->position.y, 2);
 
     // Check if the distance is less than the sum of their radii
     return distance < (arrowRadius + enemyRadius);
