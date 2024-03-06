@@ -30,7 +30,7 @@ class GameScene : public Scene
     Timer respawnTimer;
 
     std::vector<ArrowEntity*> quiver;
-    float arrowCooldown = 1.5f;
+    float arrowCooldown = 1.0f;
     Timer shootTimer;
     bool checkArrowEnemyCollision(ArrowEntity* arrow, EnemyEntity* enemy);
 

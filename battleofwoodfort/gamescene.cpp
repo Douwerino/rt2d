@@ -63,11 +63,11 @@ bool GameScene::checkArrowEnemyCollision(ArrowEntity* arrow, EnemyEntity* enemy)
 void GameScene::update(float deltaTime) {
 
     if (input()->getKey(KeyCode::Left)) {
-		playerentity->position.x -= 250*deltaTime;
-	}
-	if (input()->getKey(KeyCode::Right)) {
-        playerentity->position.x += 250*deltaTime;
-	}
+        playerentity->position.x -= 250 * deltaTime;
+    }
+    if (input()->getKey(KeyCode::Right)) {
+        playerentity->position.x += 250 * deltaTime;
+    }
 
     if (playerentity->position.x > SWIDTH - 1) {
         playerentity->position.x = SWIDTH - 1;
@@ -75,7 +75,7 @@ void GameScene::update(float deltaTime) {
     if (playerentity->position.x < 1) {
         playerentity->position.x = 1;
     }
-    
+
     if (input()->getKeyUp(KeyCode::Space)) {
         if (shootTimer.seconds() >= arrowCooldown) {
             ArrowEntity* arrowentity = new ArrowEntity();
@@ -86,10 +86,10 @@ void GameScene::update(float deltaTime) {
 
             shootTimer.start();
         }
-    
+
     }
 
-    int i = 0; 
+    int i = 0;
     while (i < quiver.size()) {
         quiver[i]->position.y -= 500 * deltaTime;
 
@@ -127,7 +127,7 @@ void GameScene::update(float deltaTime) {
         }
     }
     // Check if the respawn timer is active
-    
+
     // Check if the respawn timer has elapsed
     if (respawnTimer.seconds() >= enemyRespawnCooldown) {
         // Finish respawning
@@ -142,8 +142,5 @@ void GameScene::update(float deltaTime) {
         respawnTimer.unpause();
         return;
     }
-    
-
 
 }
-
